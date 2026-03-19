@@ -1,0 +1,244 @@
+@import "tailwindcss"; 
+
+:root {
+  --bg-base: #05050F;
+  --bg-card: #0A0A1A;
+  --bg-card-2: #0D0D20;
+  --celo-yellow: #FCFF52;
+  --celo-green: #35D07F;
+  --celo-red: #FB7C6D;
+  --purple: #8B5CF6;
+  --gold: #FFD700;
+  --font-display: 'Orbitron', monospace;
+  --font-label: 'Rajdhani', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-base);
+  color: #E2E8F0;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Global grid background ─────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Noise overlay ───────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ── Typography helpers ──────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-label   { font-family: var(--font-label); }
+.font-body    { font-family: var(--font-body); }
+
+/* ── Card accent top border ──────────────────────────────── */
+.card-accent-yellow { border-top: 2px solid var(--celo-yellow); }
+.card-accent-green  { border-top: 2px solid var(--celo-green); }
+.card-accent-purple { border-top: 2px solid var(--purple); }
+.card-accent-gold   { border-top: 2px solid var(--gold); }
+.card-accent-red    { border-top: 2px solid var(--celo-red); }
+
+/* ── Glow blobs ──────────────────────────────────────────── */
+.glow-yellow {
+  position: relative;
+}
+.glow-yellow::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(252,255,82,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.glow-green {
+  position: relative;
+}
+.glow-green::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(53,208,127,0.10) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.glow-purple {
+  position: relative;
+}
+.glow-purple::before {
+  content: '';
+  position: absolute;
+  top: -50px; left: -50px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(139,92,246,0.14) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ── Animated gradient prize number ─────────────────────── */
+@keyframes prize-gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.prize-gradient-text {
+  background: linear-gradient(135deg, #FCFF52, #FFD700, #35D07F, #FCFF52);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: prize-gradient 4s ease infinite;
+}
+
+/* ── Shimmer button ──────────────────────────────────────── */
+@keyframes shimmer-slide {
+  0%   { transform: translateX(-150%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: translateX(-150%) skewX(-15deg);
+}
+.btn-shimmer:hover::after {
+  animation: shimmer-slide 0.65s ease forwards;
+}
+
+/* ── Scanline animation ──────────────────────────────────── */
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(180deg, transparent, rgba(252,255,82,0.4), transparent);
+  animation: scanline 1.8s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── Pulse ring ──────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(252,255,82,0.5); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 16px rgba(252,255,82,0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(252,255,82,0); }
+}
+.pulse-ring-yellow { animation: pulse-ring 2s ease-out infinite; }
+
+@keyframes pulse-ring-purple {
+  0%   { box-shadow: 0 0 0 0 rgba(139,92,246,0.5); }
+  70%  { box-shadow: 0 0 0 16px rgba(139,92,246,0); }
+  100% { box-shadow: 0 0 0 0 rgba(139,92,246,0); }
+}
+.pulse-ring-purple { animation: pulse-ring-purple 2s ease-out infinite; }
+
+/* ── Rotating glow ring (winner modal) ───────────────────── */
+@keyframes rotate-glow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.rotate-glow {
+  animation: rotate-glow 4s linear infinite;
+}
+
+/* ── Dot blink ───────────────────────────────────────────── */
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+.blink-dot { animation: blink-dot 1.4s ease-in-out infinite; }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+.scrollbar-thin::-webkit-scrollbar { width: 4px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 4px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.6); }
+
+/* ── Number flip animation ───────────────────────────────── */
+@keyframes number-flip {
+  0%   { transform: translateY(-30px); opacity: 0; }
+  100% { transform: translateY(0);     opacity: 1; }
+}
+.number-flip { animation: number-flip 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+/* ── Neon text ───────────────────────────────────────────── */
+.neon-yellow {
+  text-shadow: 0 0 8px rgba(252,255,82,0.8), 0 0 20px rgba(252,255,82,0.4);
+}
+.neon-green {
+  text-shadow: 0 0 8px rgba(53,208,127,0.8), 0 0 20px rgba(53,208,127,0.4);
+}
+.neon-purple {
+  text-shadow: 0 0 8px rgba(139,92,246,0.8), 0 0 20px rgba(139,92,246,0.4);
+}
+
+/* ── Card base ───────────────────────────────────────────── */
+.game-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+.game-card:hover { border-color: rgba(255,255,255,0.12); }
+
+/* ── Status badge ────────────────────────────────────────── */
+.status-badge {
+  font-family: var(--font-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-size: 0.65rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* ── Agent message feed ──────────────────────────────────── */
+.msg-welcome       { border-left: 3px solid var(--celo-green); }
+.msg-ticket_purchase { border-left: 3px solid var(--celo-green); }
+.msg-draw_start    { border-left: 3px solid var(--celo-yellow); }
+.msg-winner_announced { border-left: 3px solid var(--gold); }
+.msg-commentary    { border-left: 3px solid var(--purple); }
+
+/* ── Responsive container ────────────────────────────────── */
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+@media (min-width: 640px)  { .app-container { padding: 0 1.5rem; } }
+@media (min-width: 1024px) { .app-container { padding: 0 2rem; } }
