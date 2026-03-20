@@ -1,8 +1,8 @@
-# Celo-AI-Raffle  OR CeloRaffle — Agent-Powered On-Chain Lottery
+# CeloRaffle — Agent-Powered On-Chain Lottery
 
 A fully on-chain, agent-powered raffle/lottery built on **Celo Sepolia** testnet.
 
-*View CeloRaffle Live Site Here:* https://celo-ai-raffle.netlify.app/
+*View CeloRaffle Live Site Here:* https://celo-raffle-agent.netlify.app/
 
 ## Stack
 
