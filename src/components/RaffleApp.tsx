@@ -25,6 +25,7 @@ export function RaffleApp() {
   const {
     raffleInfo,
     currentWinner,
+    rafflePrizeAmount,
     userTickets,
     participants,
     celoBalance,
@@ -216,17 +217,19 @@ export function RaffleApp() {
     if (!currentWinner || currentWinner === '0x0000000000000000000000000000000000000000') return;
     winnerAnnouncedRef.current = true;
     setWinner(currentWinner);
-    setWinnerPrize(raffleInfo.prizePool);
+    // Use rafflePrizeAmount from mapping (preserved after payout) instead of
+    // raffleInfo.prizePool which resets to 0 once funds are sent
+    setWinnerPrize(rafflePrizeAmount ?? raffleInfo.prizePool);
     setShowWinner(true);
     addMessage({
       raffleId: Number(raffleInfo.raffleId),
       participantCount: Number(raffleInfo.participantCount),
-      prizePool: formatEther(raffleInfo.prizePool),
+      prizePool: formatEther(rafflePrizeAmount ?? raffleInfo.prizePool),
       ticketPrice: formatEther(raffleInfo.ticketPrice),
       winner: currentWinner,
       event: 'winner_announced',
     });
-  }, [raffleInfo, currentWinner, winner, addMessage]);
+  }, [raffleInfo, currentWinner, rafflePrizeAmount, winner, addMessage]);
 
   const handlePurchase = useCallback((numTickets: number) => {
     purchasedTicketsRef.current = numTickets;
