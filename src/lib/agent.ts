@@ -44,7 +44,7 @@ export async function getAgentCommentary(context: RaffleContext): Promise<string
 
   try {
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.5-flash',
       systemInstruction: AGENT_SYSTEM_PROMPT,
     });
 
