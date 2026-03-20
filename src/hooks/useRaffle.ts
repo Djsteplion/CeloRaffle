@@ -68,6 +68,15 @@ export function useRaffle() {
     query: { enabled: parsedRaffleId !== undefined, refetchInterval: 5000 },
   });
 
+  // Read raffle prize pool from contract mapping (preserves amount even after payout)
+  const { data: rafflePrizeAmount, refetch: refetchRafflePrize } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: RAFFLE_ABI,
+    functionName: 'rafflePrizePool',
+    args: parsedRaffleId !== undefined ? [parsedRaffleId] : undefined,
+    query: { enabled: parsedRaffleId !== undefined, refetchInterval: 5000 },
+  });
+
   // Wait for tx
   const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({
     hash: txHash,
@@ -112,7 +121,8 @@ export function useRaffle() {
     refetchUserTickets();
     refetchParticipants();
     refetchWinner();
-  }, [refetchRaffleInfo, refetchUserTickets, refetchParticipants, refetchWinner]);
+    refetchRafflePrize();
+  }, [refetchRaffleInfo, refetchUserTickets, refetchParticipants, refetchWinner, refetchRafflePrize]);
 
   // Parse raffle info
   const parsedRaffleInfo: RaffleInfo | null = raffleInfo
@@ -131,6 +141,7 @@ export function useRaffle() {
     participants: participants || [],
     celoBalance: celoBalance ? parseFloat(celoBalance.formatted).toFixed(4) : '0',
     currentWinner: currentWinner as `0x${string}` | undefined,
+    rafflePrizeAmount: rafflePrizeAmount as bigint | undefined,
     purchaseTickets,
     requestDraw,
     startNewRaffle,
