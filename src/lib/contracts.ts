@@ -50,6 +50,13 @@ export const RAFFLE_ABI = [
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "rafflePrizePool",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "ticketPrice",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
@@ -150,15 +157,15 @@ export const CELO_SEPOLIA = {
   rpcUrls: {
     default: {
       http: ["https://forno.celo-sepolia.celo-testnet.org"],
-      webSocket: ["https://celo-sepolia.g.alchemy.com/v2/y8qdabsU_A-F5ifH5iJ_K"],
+      webSocket: ["wss://celo-sepolia.g.alchemy.com/v2/y8qdabsU_A-F5ifH5iJ_K"],
     },
     public: {
       http: ["https://forno.celo-sepolia.celo-testnet.org"],
-      webSocket: ["https://celo-sepolia.g.alchemy.com/v2/y8qdabsU_A-F5ifH5iJ_K"],
+      webSocket: ["wss://celo-sepolia.g.alchemy.com/v2/y8qdabsU_A-F5ifH5iJ_K"],
     },
   },
   blockExplorers: {
     default: { name: "Celo Sepolia Explorer", url: "https://sepolia.celoscan.io" },
   },
   testnet: true,
-} as const; 
+} as const;
