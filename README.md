@@ -68,7 +68,7 @@ PRIVATE_KEY=your_wallet_private_key_without_0x
 
 ### 4. Get testnet tokens
 - **CELO** (for gas + tickets): faucet.celo.org/celo-sepolia
-- Faucet sends 5 CELO per request — more than enough
+- Faucet sent me 3 CELO per request — because I signed in with my github account, and sent me 0.3 when I did'nt.
 
 ### 5. Deploy the contract
 ```bash
