@@ -161,7 +161,7 @@ struct AgentIdentity {
 
 ## ARIA Agent
 
-ARIA (Autonomous Raffle Intelligence Agent) provides live commentary powered by *Google Gemini 2.0 Flash*.
+ARIA (Autonomous Raffle Intelligence Agent) provides live commentary powered by *Google Gemini 2.5 Flash*.
 
 *Trigger events:*
 - `welcome` —> When app loads
