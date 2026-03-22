@@ -12,9 +12,9 @@ A fully on-chain, agent-powered raffle/lottery built on **Celo Sepolia** testnet
 | Smart Contracts | Solidity 0.8.20, Hardhat 2 |
 | Randomness | block.prevrandao (Chainlink VRF ready when available on Celo) |
 | Wallet | Wagmi v2 + RainbowKit v2 |
-| Payments | Native CELO (0.01 CELO per ticket) |
+| Payments | CELO (0.01 CELO per ticket) |
 | Agent Identity | ERC-8004 on-chain registration |
-| AI Commentary | Google Gemini 2.0 Flash (ARIA Agent) |
+| AI Commentary | Google Gemini 2.5 Flash (ARIA) |
 | Chain | Celo Sepolia Testnet |
 
 
@@ -30,7 +30,7 @@ A fully on-chain, agent-powered raffle/lottery built on **Celo Sepolia** testnet
          │ Wagmi v2 / RainbowKit v2      │ Gemini API
 ┌─────────────────────┐    ┌─────────────────────────────┐
 │   CeloRaffle.sol    │    │     /api/agent route         │
-│                     │    │  Gemini 2.0 Flash commentary │
+│                     │    │  Gemini 2.5 Flash           │
 │ ├─ ERC-8004 Agent   │    └─────────────────────────────┘
 │ ├─ block.prevrandao │
 │ ├─ Native CELO      │
