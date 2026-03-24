@@ -2,7 +2,9 @@
 
 A fully on-chain, agent-powered raffle/lottery built on **Celo Sepolia** testnet.
 
-*View CeloRaffle Live Site Here:* https://celo-raffle-agent.netlify.app/
+*Pitch-Deck:* https://celo-raffle-pitch-deck.netlify.app/
+*View Live Site Here:* https://celo-raffle-agent.netlify.app/
+*Demo Video:* https://x.com/djsteplion/status/2035480508973322740?s=20
 
 ## Stack
 
